@@ -3,7 +3,7 @@
 This repository contains everything you asked for — and nothing you expected.
 
 **Looking for a CV?**  
-Find it in [The Black Swan Manifesto](https://LINK-DA-GITHUB-PAGE).
+Find it in [The Black Swan Manifesto]([https://LINK-DA-GITHUB-PAGE](https://mr-robot-ec.github.io/BlackSwan/)).
 
 **Looking for contact?**  
 Try my [LinkedIn]([https://www.linkedin.com/in/mr-robot-579973341/]).  
