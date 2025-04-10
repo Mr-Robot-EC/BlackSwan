@@ -5,8 +5,6 @@ document.addEventListener("DOMContentLoaded", function () {
     let challengeCompleted = false;
     let currentTypewriterTimeouts = [];
 
-    //const TARGET_PAYLOAD = "eyJ1cmwiOiJodHRwczovL21yLXJvYm90LWV2Yy5naXRodWIuaW8vSGlkZGVuUGFnZS8iLCJydWxlcyI6eyIxIjoiaW5kZXggMDozLCBpbmRleDE6MiAuLiBldGMuIiwiMyI6IkNvbnZlcnQgZWFjaCBudW1iZXIgaW50byBpdHMgQVNDSUkgcmVwcmVzZW50YXRpb24uIn19";
-
     // Matrix rain setup
     const rainCanvas = document.getElementById('matrix');
     const ctxRain = rainCanvas ? rainCanvas.getContext('2d') : null;
@@ -142,22 +140,7 @@ document.addEventListener("DOMContentLoaded", function () {
             console.error("Card not found:", cardIdToShow);
         }
     }
-    /*
-    // Check and finalize challenge completion
-    function checkAndFinalize() {
-        //console.log("Checking payload. Collected:", collectedPayloadPieces.length, "Target:", TARGET_PAYLOAD.length);
-        if (collectedPayloadPieces === TARGET_PAYLOAD) {
-            localStorage.setItem('blackSwanPayloadFragment', collectedPayloadPieces);
-            console.log("Look deep down in your heart... where you store your memories");
-            document.getElementById('final-message').style.display = 'none';
-        } else {
-            //console.error("Payload Mismatch! Challenge failed at final check.");
-            document.getElementById('final-message').innerHTML = '<p style="color: var(--wrong-color);">Payload sequence mismatch. Memory corrupted.</p>';
-            document.getElementById('final-message').style.display = 'block';
-            localStorage.removeItem('blackSwanPayloadFragment');
-        }
-    }
-    */
+    
     function checkAndFinalize() {
         // Check if we've collected all 12 pieces (one from each card)
         const expectedPieceCount = totalCards; // We expect one piece per card
