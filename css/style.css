@@ -1,0 +1,443 @@
+/* Base settings */
+html {
+  font-size: 62.5%;
+}
+
+/* Core Matrix Theme - GREEN */
+:root {
+  --bg-color: #000000;
+  --text-color: #00ff00;
+  --accent-color: #00dd00;
+  --secondary-color: #00aa00;
+  --card-bg: rgba(0, 20, 0, 0.75);
+  --card-border: #00ff00;
+  --btn-bg: rgba(0, 30, 0, 0.8);
+  --btn-hover-bg: rgba(0, 50, 0, 0.9);
+  --btn-shadow: rgba(0, 255, 0, 0.5);
+  --wrong-color: #ff0000;
+  --link-color: #33ff33;
+  --link-hover-bg: #33ff33;
+  --link-hover-color: #000000;
+  --final-card-bg: #f0f0f0;
+  --final-card-border: #8b4513;
+  --final-card-text: #333333;
+  --final-room-bg: #ffffff;
+}
+
+body {
+  font-family: "Courier New", monospace;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  line-height: 1.6;
+  margin: 0;
+  padding: 2rem;
+  min-height: 100vh;
+  font-size: 1.6rem;
+  transition: background-color 0.5s ease-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  text-align: center;
+}
+
+/* Scan line effect */
+body::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.15),
+    rgba(0, 0, 0, 0.15) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+  pointer-events: none;
+  z-index: 1;
+  transition: opacity 0.5s ease-out;
+}
+
+/* Matrix Rain Canvas Styling - Using class like index.html */
+.matrix-bg {
+  /* Changed from #matrix-manifesto */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  opacity: 0.15;
+  pointer-events: none;
+  /* No transition needed here */
+}
+
+/* Container */
+.container {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  margin: 0 auto;
+  width: 90%;
+  padding: 0;
+}
+
+.cards-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+/* Card styling */
+.card {
+  background-color: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 5px;
+  padding: 3rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 0 20px var(--btn-shadow);
+  display: none;
+  opacity: 0;
+  transform: translateY(2rem);
+  transition: opacity 0.5s, transform 0.5s;
+  width: 100%;
+  position: relative;
+  text-align: left;
+  box-sizing: border-box;
+}
+.card.active {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Icons */
+.card-icon {
+  width: 5rem;
+  height: 5rem;
+  margin: 0 auto 2rem auto;
+  display: block;
+  fill: var(--text-color);
+  transition: all 0.3s ease;
+}
+.card-icon:hover {
+  fill: var(--accent-color);
+  transform: scale(1.1);
+  filter: drop-shadow(0 0 0.5rem var(--accent-color));
+}
+
+/* Headings */
+h1,
+h2 {
+  color: var(--text-color);
+  text-shadow: 0 0 5px var(--text-color);
+  margin-top: 0;
+  font-family: "Courier New", monospace;
+  position: relative;
+  display: inline-block;
+  min-height: 1.2em; /* Reserve space */
+}
+h1::after,
+h2::after {
+  display: none;
+}
+
+/* Paragraphs */
+p {
+  margin-bottom: 1.6rem;
+  font-size: 1.8rem;
+  line-height: 1.8;
+  color: var(--text-color);
+  min-height: 1.8em; /* Reserve space */
+}
+/* Card H3 */
+.card h3 {
+  color: var(--text-color);
+  text-shadow: 0 0 3px var(--text-color);
+  margin-bottom: 1.5em;
+  min-height: 1.2em; /* Reserve space */
+}
+
+/* Buttons (Options, Restart) */
+.btn,
+.option {
+  background: var(--btn-bg);
+  color: var(--text-color);
+  border: 1px solid var(--text-color);
+  padding: 1rem 1.5rem;
+  font-family: "Courier New", monospace;
+  font-size: 1.6rem;
+  cursor: pointer;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  display: block;
+  width: 100%;
+  text-align: left;
+  box-sizing: border-box;
+  opacity: 0; /* Initially hidden */
+  transition: opacity 0.5s ease-in 0.2s, background-color 0.2s, box-shadow 0.2s;
+}
+
+.option::before {
+  content: "> ";
+  color: var(--accent-color);
+  opacity: 0;
+  transition: opacity 0.3s;
+  margin-right: 5px;
+}
+.option:hover::before {
+  opacity: 1;
+}
+
+.btn:hover,
+.option:hover {
+  background: var(--btn-hover-bg);
+  box-shadow: 0 0 10px var(--btn-shadow);
+}
+
+#restart-button {
+  margin-top: 4rem;
+  display: inline-block;
+  width: auto;
+  text-align: center;
+  background-color: var(--accent-color);
+}
+#restart-button:hover {
+  background-color: var(--text-color);
+  color: var(--bg-color);
+}
+
+.options {
+  margin-top: 2.5rem;
+  visibility: hidden; /* Hide options container initially */
+}
+/* Removed CSS rules relying on .typing-done for visibility/opacity */
+
+/* Wrong answer styling */
+.wrong-answer {
+  background-color: var(--wrong-color) !important;
+  color: #fff !important;
+  border-color: var(--wrong-color) !important;
+  animation: shake 0.5s;
+}
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    transform: translateX(-1rem);
+  }
+  20%,
+  40%,
+  60%,
+  80% {
+    transform: translateX(1rem);
+  }
+}
+
+/* Contact Links */
+.contact-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+.contact-link {
+  text-decoration: none;
+  color: var(--link-color);
+  padding: 0.8rem 1.5rem;
+  border: 1px solid var(--link-color);
+  border-radius: 4px;
+  transition: all 0.3s;
+  font-family: "Courier New", monospace;
+}
+.contact-link:hover {
+  background-color: var(--link-hover-bg);
+  color: var(--link-hover-color);
+  box-shadow: 0 0 8px var(--link-hover-bg);
+}
+.contact-link::before {
+  display: none;
+}
+
+/* Quote */
+.quote {
+  font-style: italic;
+  font-size: 2rem;
+  margin: 3rem 0;
+  padding: 1.5rem;
+  border-left: 3px solid var(--accent-color);
+  background-color: rgba(0, 20, 0, 0.3);
+  text-align: center;
+}
+.quote::before {
+  display: none;
+}
+
+/* Final Gift Section */
+.final-gift {
+  margin-top: 3rem;
+  text-align: center;
+}
+.final-gift p {
+  margin-bottom: 1rem;
+}
+.final-gift .contact-link {
+  display: inline-block;
+  width: auto;
+}
+
+/* Final Message (Success/Fail) */
+#final-message {
+  margin-top: 2rem;
+  text-align: center;
+  font-size: 1.8rem;
+  display: none;
+}
+#final-message p {
+  min-height: 0;
+}
+
+/* Terminal Cursor */
+.terminal-cursor {
+  display: inline-block;
+  width: 0.8rem;
+  height: 1.8rem;
+  background-color: var(--text-color);
+  animation: blink-animation 1s steps(5, start) infinite;
+  vertical-align: middle;
+  margin-left: 0.5rem;
+}
+@keyframes blink-animation {
+  to {
+    visibility: hidden;
+  }
+}
+
+/* --- Final Card "TV Effect" --- */
+#card-final {
+  transition: background-color 0.5s ease-out, border-color 0.5s ease-out,
+    color 0.5s ease-out;
+}
+
+.final-room-active #card-final {
+  background-color: var(--final-card-bg);
+  border: 10px solid var(--final-card-border);
+  color: var(--final-card-text);
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.5);
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.final-room-active #card-final h1,
+.final-room-active #card-final p {
+  color: var(--final-card-text);
+  text-shadow: none;
+}
+.final-room-active #card-final .quote {
+  color: var(--final-card-text);
+  border-left-color: var(--final-card-border);
+  background-color: rgba(0, 0, 0, 0.05);
+}
+.final-room-active #card-final .contact-link {
+  color: var(--secondary-color);
+  border-color: var(--secondary-color);
+}
+.final-room-active #card-final .contact-link:hover {
+  background-color: var(--secondary-color);
+  color: var(--final-card-bg);
+  box-shadow: 0 0 8px var(--secondary-color);
+}
+.final-room-active #card-final #restart-button {
+  background-color: var(--secondary-color);
+  color: var(--final-card-bg);
+  border-color: var(--secondary-color);
+}
+.final-room-active #card-final #restart-button:hover {
+  background-color: var(--final-card-text);
+  color: var(--final-card-bg);
+}
+.final-room-active #card-final .terminal-cursor {
+  background-color: var(--final-card-text);
+}
+
+/* Body style for the "White Room" */
+body.final-room-active {
+  background-color: var(--final-room-bg) !important;
+}
+/* Hide rain and scanlines in white room */
+body.final-room-active .matrix-bg, /* Target class */
+ body.final-room-active::before {
+  opacity: 0 !important;
+  pointer-events: none;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 600px) {
+  html {
+    font-size: 58%;
+  }
+  .card {
+    padding: 2rem;
+  }
+  .contact-link {
+    padding: 0.8rem 1.2rem;
+  }
+  h1,
+  #card-final h1 {
+    font-size: 2.2rem;
+  }
+  p {
+    font-size: 1.6rem;
+    min-height: 1.6em;
+  }
+  .card h3 {
+    min-height: 1.1em;
+  }
+}
+@media (max-width: 400px) {
+  html {
+    font-size: 55%;
+  }
+  body {
+    padding: 1rem;
+  }
+  .card {
+    padding: 1.5rem;
+  }
+  h1,
+  #card-final h1 {
+    font-size: 2rem;
+  }
+  p {
+    font-size: 1.5rem;
+    min-height: 1.5em;
+  }
+  .card h3 {
+    min-height: 1em;
+  }
+}
+
+/* Class for typewriter target elements */
+.typewriter-target {
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Style for correct answer flash (Green) */
+.correct-answer-flash {
+  background-color: var(--accent-color) !important;
+  color: #000 !important;
+  transition: background-color 0.1s ease-in-out !important;
+}
