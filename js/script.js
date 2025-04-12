@@ -148,7 +148,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // Get actual length of base64 data or count of distinct pieces
         const collectedPiecesLength = collectedPayloadPieces.length;
         
-        console.log(`Collected ${collectedPiecesLength} characters from payload pieces`);
+        
         
         // Check if we've collected pieces from all cards
         if (collectedPiecesLength > 0 && currentCardIndex > totalCards) {
