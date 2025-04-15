@@ -153,7 +153,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // Check if we've collected pieces from all cards
         if (collectedPiecesLength > 0 && currentCardIndex > totalCards) {
             localStorage.setItem('blackSwanPayloadFragment', collectedPayloadPieces);
-            console.log("Look deep down in your heart... where you store your memories");
+            console.log("They must have left a mark or something.. every hacker loves attention.");
             document.getElementById('final-message').style.display = 'none';
         } else {
             document.getElementById('final-message').innerHTML = '<p style="color: var(--wrong-color);">Payload sequence incomplete. Memory corrupted.</p>';
